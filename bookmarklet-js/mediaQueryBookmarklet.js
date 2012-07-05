@@ -3,7 +3,7 @@
 var mqb = {
 
   init: function() {
-    mqb.version = '1.3.1';
+    mqb.version = '1.3.2';
     mqb.mqList = [];
     mqb.matchMedia = window.matchMedia !== undefined;
 
