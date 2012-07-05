@@ -196,7 +196,7 @@ var mqb = {
   },
 
   showCurrentSize: function() {
-    document.getElementById('dimensions').innerHTML = window.innerWidth + 'px x ' + window.innerHeight + 'px<br>' + ( window.innerWidth / this.findEmSize() ) + 'em ' + ( window.innerHeight / this.findEmSize() ) + 'em';
+    document.getElementById('dimensions').innerHTML = window.innerWidth + 'px x ' + window.innerHeight + 'px<br>' + ( window.innerWidth / this.findEmSize() ) + 'em x ' + ( window.innerHeight / this.findEmSize() ) + 'em';
   },
   
   mqChange: function() {
