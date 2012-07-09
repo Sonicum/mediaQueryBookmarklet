@@ -3,7 +3,7 @@
 var mqb = {
 
   init: function() {
-    mqb.version = '1.3.2';
+    mqb.version = '1.3.3';
     mqb.mqList = [];
     mqb.matchMedia = window.matchMedia !== undefined;
 
@@ -46,7 +46,7 @@ var mqb = {
     },
     versionStyles = {
       color: '#444',
-      textTransform: 'lowercase',
+      textTransform: 'lowercase'
     },
     closeButtonStyles = {
       color: '#444',
@@ -69,8 +69,9 @@ var mqb = {
     linksContainer = document.createElement( 'div' ),
     versionLink = document.createElement( 'a' ),
     closeButton = document.createElement( 'a' ),
-    positionButton = document.createElement( 'a' ),
-    emTest = document.createElement( 'div' );
+    positionButton = document.createElement( 'a' );
+
+    mqb.emTest = document.createElement( 'div' );
     
     mqb.display.className = 'sb-pageSize';
     mqb.display.id = "sb-mediaQueryBookmarklet";
@@ -83,7 +84,7 @@ var mqb = {
     closeButton.href = '.';
     closeButton.innerHTML = '(close)';
     positionButton.innerHTML = '⇤';
-    emTest.id = "emTest";
+    mqb.emTest.id = "emTest";
 
     closeButton.addEventListener( 'click', function( e ) {
       mqb.close( e );
@@ -125,7 +126,7 @@ var mqb = {
       positionButton.style[i] = positionButtonStyles[i];
     }
     for (i in emTestStyles) {
-      emTest.style[i] = emTestStyles[i];
+      mqb.emTest.style[i] = emTestStyles[i];
     }
     mqb.display.appendChild( dimensionContainer );
     mqb.display.appendChild( queryContainer );
@@ -133,8 +134,7 @@ var mqb = {
     linksContainer.appendChild( closeButton );
     linksContainer.appendChild( positionButton );
     mqb.display.appendChild( linksContainer );
-    mqb.display.appendChild( emTest );
-
+    document.head.parentNode.appendChild( mqb.emTest );
 
     document.body.appendChild(mqb.display);
   },
@@ -143,6 +143,7 @@ var mqb = {
     e.preventDefault();
 
     document.body.removeChild( mqb.display );
+    document.head.parentNode.removeChild( mqb.emTest );
   },
   
   getMediaQueries: function() {
@@ -196,7 +197,7 @@ var mqb = {
   },
 
   showCurrentSize: function() {
-    document.getElementById('dimensions').innerHTML = window.innerWidth + 'px x ' + window.innerHeight + 'px<br>' + ( window.innerWidth / this.findEmSize() ) + 'em x ' + ( window.innerHeight / this.findEmSize() ) + 'em';
+    document.getElementById('dimensions').innerHTML = document.width + 'px x ' + document.height + 'px<br>' + ( document.width / this.findEmSize() ).toPrecision(4) + 'em x ' + ( document.height / this.findEmSize() ).toPrecision(4) + 'em';
   },
   
   mqChange: function() {
