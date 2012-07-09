@@ -3,7 +3,7 @@
 var mqb = {
 
   init: function() {
-    mqb.version = '1.3.3';
+    mqb.version = '1.3.4';
     mqb.mqList = [];
     mqb.matchMedia = window.matchMedia !== undefined;
 
@@ -57,7 +57,11 @@ var mqb = {
     positionButtonStyles = {
       color: '#444',
       cursor: 'pointer',
-      fontSize: '13px'
+      background: 'url(http://sparkbox.github.com/mediaQueryBookmarklet/images/left.png) no-repeat 50%',
+      display: 'block',
+      'float': 'right',
+      height: '15px',
+      width: '44px'
     },
     emTestStyles = {
       height: 0,
@@ -83,7 +87,6 @@ var mqb = {
     versionLink.innerHTML = 'version ' + this.version;
     closeButton.href = '.';
     closeButton.innerHTML = '(close)';
-    positionButton.innerHTML = '⇤';
     mqb.emTest.id = "emTest";
 
     closeButton.addEventListener( 'click', function( e ) {
@@ -96,11 +99,11 @@ var mqb = {
       if ( mqb.display.style.left == 'auto' ) {
         mqb.display.style.right = 'auto';
         mqb.display.style.left = 0;
-        positionButton.innerHTML = '⇥';
+        positionButton.style.backgroundImage = 'url(http://sparkbox.github.com/mediaQueryBookmarklet/images/right.png)';
       } else {
         mqb.display.style.right = 0;
         mqb.display.style.left = 'auto';
-        positionButton.innerHTML = '⇤';
+        positionButton.style.backgroundImage = 'url(http://sparkbox.github.com/mediaQueryBookmarklet/images/left.png)';
       }
     });
     
