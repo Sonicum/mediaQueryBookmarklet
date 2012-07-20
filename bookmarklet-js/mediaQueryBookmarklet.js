@@ -3,7 +3,7 @@
 var mqb = {
 
   init: function() {
-    mqb.version = '1.3.4';
+    mqb.version = '1.3.5';
     mqb.mqList = [];
     mqb.matchMedia = window.matchMedia !== undefined;
 
@@ -200,7 +200,9 @@ var mqb = {
   },
 
   showCurrentSize: function() {
-    document.getElementById('dimensions').innerHTML = document.width + 'px x ' + document.height + 'px<br>' + ( document.width / this.findEmSize() ).toPrecision(4) + 'em x ' + ( document.height / this.findEmSize() ).toPrecision(4) + 'em';
+    var width = document.width || window.outerWidth;
+    var height = document.height || window.outerHeight;
+    document.getElementById('dimensions').innerHTML = width + 'px x ' + height + 'px<br>' + ( width / this.findEmSize() ).toPrecision(4) + 'em x ' + ( height / this.findEmSize() ).toPrecision(4) + 'em';
   },
   
   mqChange: function() {
