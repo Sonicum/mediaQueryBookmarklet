@@ -108,14 +108,14 @@
 }
 
 #mqb-horz-ruler {
-  background: rgba(255, 255, 255, .5) url(../img/ruler.png) repeat-x;
+  background: rgba(255, 255, 255, .5) url(../images/ruler.png) repeat-x;
   height: 10px;
   position: fixed;
   top: 0;
   width: 100%;
 }
 #mqb-vert-ruler {
-  background: rgba(255, 255, 255, .5) url(../img/vert-ruler.png) repeat-y;
+  background: rgba(255, 255, 255, .5) url(../images/vert-ruler.png) repeat-y;
   height: 100%;
   position: fixed;
   left: 0;
