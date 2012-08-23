@@ -9,7 +9,7 @@ window.mqb = {
       document.body.removeChild( bookmarklet );
     }
 
-    mqb.version = '1.4.1';
+    mqb.version = '1.4.2';
     mqb.tmpl =
       "<p id=\"mqb-dimensions\"></p>" +
       "<p id=\"mqb-mousePosition\"></p>" +
@@ -19,7 +19,7 @@ window.mqb = {
       "  <button id=\"mqb-closeButton\">close</button>" +
       "  <button id=\"mqb-positionButton\"></button>" +
       "</div>";
-    mqb.rulersTmpl = 
+    mqb.rulersTmpl =
       "<div id=\"mqb-horz-ruler\">" +
       "  <div id=\"mqb-mouseXPosition\">" +
       "</div>" +
@@ -30,12 +30,12 @@ window.mqb = {
     mqb.emTest = document.createElement( "div" );
     mqb.emTest.id = "mqb-emTest";
     document.body.appendChild( mqb.emTest );
-    
+
     mqb.loadCSS();
     mqb.createTemplate();
 
     mqb.mqList = [];
-    
+
     mqb.createMQList();
 
     window.addEventListener('resize', function() {
@@ -64,7 +64,7 @@ window.mqb = {
     mqb.rulers = document.createElement( "div" );
     mqb.rulers.id = "sb-rulers";
     mqb.rulers.innerHTML = mqb.rulersTmpl;
-    document.body.appendChild( mqb.rulers );  
+    document.body.appendChild( mqb.rulers );
 
     mqb.mouseXPosition = document.getElementById( "mqb-mouseXPosition" );
     mqb.mouseYPosition = document.getElementById( "mqb-mouseYPosition" );
@@ -105,13 +105,13 @@ window.mqb = {
     var mqs = this.getMediaQueries(),
         links = document.getElementsByTagName('link'),
         i;
-        
+
     for ( i = mqs.length-1; i >= 0; i-- ) {
       if ( !this.inList( mqs[i] ) ) {
         this.mqList.push( window.matchMedia( mqs[ i ] ) );
       }
     }
-    
+
     for ( i = links.length-1; i >= 0; i-- ) {
       if ( links[ i ].media !== '' ) {
         this.mqList.push( window.matchMedia( links[ i ].media ) );
@@ -181,14 +181,14 @@ window.mqb = {
 
   mqChange: function() {
     var html = '';
-    
+
     for ( var i in mqb.mqList ) {
       if ( mqb.mqList[ i ].matches ) {
         html += "<li>" + mqb.mqList[ i ].media + "</li>";
       }
     }
     mqb.viewQueries.innerHTML = html;
-  },  
+  },
 
   showCurrentSize: function() {
     var width = document.width || window.outerWidth;
