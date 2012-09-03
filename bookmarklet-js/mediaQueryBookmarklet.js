@@ -27,6 +27,7 @@ window.mqb = {
       "  <div id=\"mqb-mouseYPosition\">" +
       "</div>";
 
+    mqb.rulers = document.getElementById( "sb-rulers" );
     mqb.emTest = document.createElement( "div" );
     mqb.emTest.id = "mqb-emTest";
     document.body.appendChild( mqb.emTest );
@@ -46,7 +47,24 @@ window.mqb = {
     }, false);
     mqb.mqChange();
 
+    mqb.drawGuides();
+    mqb.addCSSForGuides();
+
     mqb.initEmSize();
+  },
+
+  addCSSForGuides: function() {
+    mqb.guideStyles = [];
+
+    for ( i in mqb.mqList ) {
+      mqb.guideStyles[ i ] = document.createElement( "style" );
+      mqb.guideStyles[ i ].innerHTML = "@media (max-width: " + mqb.mqList[ i ].media.match( /\([\w\-\:]*\s+(\d+)([a-z]+)\)/ )[1] + mqb.mqList[ i ].media.match( /\([\w\-\:]*\s+(\d+)([a-z]+)\)/ )[2] + ") { " +
+                       "  #mqbGuide-" + i + " {" +
+                       "    left: -10px;" +
+                       "  }" +
+                       "}";
+      document.head.appendChild( mqb.guideStyles[ i ] );
+    }
   },
 
   appendDisplay: function() {
@@ -98,6 +116,10 @@ window.mqb = {
     document.body.removeChild( mqb.rulers );
     document.head.removeChild( mqb.css );
 
+    for ( var i in mqb.guideStyles ) {
+      document.head.removeChild( mqb.guideStyles[ i ] );
+    }
+
     document.removeEventListener( 'mousemove', mqb.showCurrentMousePos );
   },
 
@@ -124,7 +146,21 @@ window.mqb = {
     mqb.viewDimensions = document.getElementById( "mqb-dimensions" );
     mqb.viewQueries = document.getElementById( "mqb-queries" );
     mqb.tmplReplace( "mqb-version", "version " + mqb.version );
-    mqb.updateDisplay();
+    mqb.showCurrentSize();
+  },
+
+  drawGuides: function() {
+    var i;
+
+    mqb.guides = [];
+
+    for ( i in mqb.mqList ) {
+      mqb.guides[ i ] = document.createElement( "div" );
+      mqb.guides[ i ].id = "mqbGuide-" + i;
+      mqb.guides[ i ].className = "mqb-guide";
+      mqb.guides[ i ].style.left = mqb.mqList[ i ].media.match( /\([\w\-\:]*\s+(\d+)([a-z]+)\)/ )[1] + mqb.mqList[ i ].media.match( /\([\w\-\:]*\s+(\d+)([a-z]+)\)/ )[2];
+      mqb.rulers.appendChild( mqb.guides[ i ] );
+    }
   },
 
   findEmSize: function() {
@@ -176,6 +212,7 @@ window.mqb = {
     mqb.css.type = "text/css";
     mqb.css.rel = "stylesheet";
     mqb.css.href = "http://sparkbox.github.com/mediaQueryBookmarklet/stylesheets/mediaQuery.css";
+    mqb.css.href = "http://localhost/mediaQueryBookmarklet/css/mediaQuery.css";
     document.head.appendChild( mqb.css );
   },
 
@@ -184,7 +221,7 @@ window.mqb = {
 
     for ( var i in mqb.mqList ) {
       if ( mqb.mqList[ i ].matches ) {
-        html += "<li>" + mqb.mqList[ i ].media + "</li>";
+        html += "<li><span>" + mqb.mqList[ i ].media + "</span></li>";
       }
     }
     mqb.viewQueries.innerHTML = html;
@@ -198,10 +235,6 @@ window.mqb = {
 
   tmplReplace: function( dstID, src ) {
     document.getElementById( dstID ).innerHTML = src;
-  },
-
-  updateDisplay: function() {
-    mqb.showCurrentSize();
   },
 
   showCurrentMousePos: function( e ) {
