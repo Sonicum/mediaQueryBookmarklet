@@ -36,53 +36,6 @@
   padding: 0 0 0 1em;
   text-transform: lowercase;
 }
-#mqb-queries span {
-  color: #000;
-}
-
-
-#mqb-queries li:nth-child( 8n+1 ) {
-  color: #bd0404;
-}
-#mqb-queries li:nth-child( 8n+2 ) {
-  color: #040dbd;
-}
-#mqb-queries li:nth-child( 8n+3 ) {
-  color: #106c12;
-}
-#mqb-queries li:nth-child( 8n+4 ) {
-  color: #bd0404;
-}
-#mqb-queries li:nth-child( 8n+5 ) {
-  color: #399f97;
-}
-
-.mqb-guide:nth-child( n+2 ) {
-  background: #bd0404;
-}
-.mqb-guide:nth-child( 8n+3 ) {
-  background: #040dbd;
-}
-.mqb-guide:nth-child( 8n+4 ) {
-  background: #106c12;
-}
-.mqb-guide:nth-child( 8n+5 ) {
-  background: #bd0404;
-}
-.mqb-guide:nth-child( 8n+6 ) {
-  background: #399f97;
-}
-
-.mqb-guide {
-  -webkit-box-shadow: 1px 0 0 rgba(255, 255, 255, .1);
-     -moz-box-shadow: 1px 0 0 rgba(255, 255, 255, .1);
-       -o-box-shadow: 1px 0 0 rgba(255, 255, 255, .1);
-          box-shadow: 1px 0 0 rgba(255, 255, 255, .1);
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 1px;
-}
 
 #mqb-linksContainer {
   font-size: 10px;
@@ -155,14 +108,14 @@
 }
 
 #mqb-horz-ruler {
-  background: rgba(255, 255, 255, .5) url(../img/ruler.png) repeat-x;
+  background: rgba(255, 255, 255, .5) url(http://sparkbox.github.com/mediaQueryBookmarklet/images/ruler.png) repeat-x;
   height: 10px;
   position: fixed;
   top: 0;
   width: 100%;
 }
 #mqb-vert-ruler {
-  background: rgba(255, 255, 255, .5) url(../img/vert-ruler.png) repeat-y;
+  background: rgba(255, 255, 255, .5) url(http://sparkbox.github.com/mediaQueryBookmarklet/images/vert-ruler.png) repeat-y;
   height: 100%;
   position: fixed;
   left: 0;
